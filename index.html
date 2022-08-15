@@ -14,17 +14,22 @@
         <script>
             const container = document.getElementById("container");
 
-            function makeRows(rows, cols) {
-                container.style.setProperty('--grid-rows', rows);
-                container.style.setProperty('--grid-cols', cols);
-                for (c = 0; c < (rows * cols); c++) {
-                    let cell = document.createElement("div");
-                    cell.innerText = (c + 1);
-                    container.appendChild(cell).className = "grid-item";
-                };
+            
+            container.style.setProperty('--grid-rows', 16);
+            container.style.setProperty('--grid-cols', 16);    
+            for (c = 0; c < (16 * 16); c++) {
+                let cell = document.createElement("div");
+                cell.innerText = (c + 1);
+                cell.classList.add("grid");
+                container.appendChild(cell);
             };
 
-            makeRows(16, 16);
+            const clr = document.querySelectorAll('.grid');
+            clr.forEach((hover) => {
+                hover.addEventListener('mouseover' , () => {
+                    hover.style.backgroundColor = "red";
+                });   
+            });
         </script>
     </body>
 </html>
