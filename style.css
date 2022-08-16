@@ -12,13 +12,10 @@
   
   #container {
     display: grid;
-    grid-gap: 1em;
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-cols), 1fr);
-  }
-
-  #container2 {
-    align-self: center;
+    max-width: 960px;
+    max-height: 960px;
+    grid-template-rows: repeat(var(--grid-rows), minmax(1px, 1fr));
+    grid-template-columns: repeat(var(--grid-cols), minmax(1px, 1fr));
   }
   
   .grid {
