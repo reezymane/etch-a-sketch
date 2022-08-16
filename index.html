@@ -16,39 +16,54 @@
 
         <script>
             const container = document.getElementById("container");
+            
+            let x = 0;
 
-            
-            
+            function makeRows(input) {
+                container.style.setProperty('--grid-rows', input);
+                container.style.setProperty('--grid-cols', input);    
+                for (c = 0; c < (input * input); c++) {
+                    let cell = document.createElement("div");
+                    cell.innerText = (c + 1);
+                    cell.classList.add("grid");
+                    container.appendChild(cell);
+                };
+
+                clr = document.querySelectorAll('.grid');
+                clr.forEach((hover) => {
+                    hover.addEventListener('mouseover' , () => {
+                        hover.style.backgroundColor = "red";
+                    });   
+                });
+            };
 
             const btn = document.querySelector('button');
             btn.addEventListener('click' , () => {
-                let clr = document.querySelectorAll('.grid');
-                clr.forEach((reset) => {
-                    reset.style.backgroundColor = "white";
-                });
-                
                 let num = prompt("Enter the number of squares per side for the new grid:");
                 num = Number(num);
-                if (num <= 100) {
-                    container.style.setProperty('--grid-rows', num);
-                    container.style.setProperty('--grid-cols', num);    
-                    for (c = 0; c < (num * num); c++) {
-                        let cell = document.createElement("div");
-                        cell.innerText = (c + 1);
-                        cell.classList.add("grid");
-                        container.appendChild(cell);
+
+                if (x == 0) {
+                    if (num <= 100) {
+                        makeRows(num);
+                    } else {
+                        alert('Please enter a number less than 100!');
+                    };
+                } else {
+                    while (container.firstChild) {
+                        container.removeChild(container.firstChild);
                     };
 
-                    clr = document.querySelectorAll('.grid');
-                    clr.forEach((hover) => {
-                        hover.addEventListener('mouseover' , () => {
-                            hover.style.backgroundColor = "red";
-                        });   
-                    });
-                } else {
-                    alert('Please enter a number less than 100!');
-                };
+                    if (num <= 100) {
+                        makeRows(num);
+                    } else {
+                        alert('Please enter a number less than 100!');
+                    };
+                }
+
+                x = x + 1;
             });
+               
+            
         </script>
     </body>
 </html>
